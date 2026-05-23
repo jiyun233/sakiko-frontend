@@ -31,6 +31,10 @@ const open = ref(false)
           class="text-sm text-muted-foreground transition-colors hover:text-foreground">
           {{ item.label }}
         </a>
+        <a href="#/vote"
+          class="text-sm text-muted-foreground transition-colors hover:text-foreground">
+          功能投票
+        </a>
       </nav>
 
       <!-- Desktop CTA -->

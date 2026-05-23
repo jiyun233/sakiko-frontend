@@ -14,7 +14,8 @@ dist-ssr
 # Environment files
 .env
 .env.*
-!.env.example
+!.env.production
+!.env.development
 
 # Vite cache
 node_modules/.vite
