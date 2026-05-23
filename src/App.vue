@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from "vue"
+import { onMounted, onUnmounted, ref } from "vue"
 import NavBar from "@/components/sections/NavBar.vue"
 import HeroSection from "@/components/sections/HeroSection.vue"
 import FeaturesSection from "@/components/sections/FeaturesSection.vue"
@@ -43,8 +43,7 @@ onUnmounted(() => window.removeEventListener("hashchange", onHashChange))
     <!-- Floating theme toggle -->
     <div class="fixed bottom-6 right-6 z-50">
       <div
-        class="flex size-11 items-center justify-center rounded-full border border-border bg-background shadow-lg transition-shadow duration-300 ease-spring hover:shadow-xl"
-      >
+        class="flex size-11 items-center justify-center rounded-full border border-border bg-background shadow-lg transition-shadow duration-300 ease-spring hover:shadow-xl">
         <ThemeToggle />
       </div>
     </div>
