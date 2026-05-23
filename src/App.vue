@@ -1,0 +1,29 @@
+<script setup lang="ts">
+import NavBar from "@/components/sections/NavBar.vue"
+import HeroSection from "@/components/sections/HeroSection.vue"
+import FeaturesSection from "@/components/sections/FeaturesSection.vue"
+import CommandsSection from "@/components/sections/CommandsSection.vue"
+import StatsSection from "@/components/sections/StatsSection.vue"
+import FooterSection from "@/components/sections/FooterSection.vue"
+import ThemeToggle from "@/components/sections/ThemeToggle.vue"
+</script>
+
+<template>
+  <NavBar />
+  <main>
+    <HeroSection />
+    <FeaturesSection />
+    <CommandsSection />
+    <StatsSection />
+  </main>
+  <FooterSection />
+
+  <!-- Floating theme toggle -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <div
+      class="flex size-11 items-center justify-center rounded-full border border-border bg-background shadow-lg transition-shadow duration-300 ease-spring hover:shadow-xl"
+    >
+      <ThemeToggle />
+    </div>
+  </div>
+</template>
