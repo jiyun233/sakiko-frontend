@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { siteConfig } from "@/config/site"
 import { Button } from "@/components/ui/button"
-import { Bot, Menu, X } from "@lucide/vue"
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import { Bot, Menu } from "@lucide/vue"
 import { ref } from "vue"
 
 const open = ref(false)
@@ -26,6 +33,7 @@ const open = ref(false)
         </a>
       </nav>
 
+      <!-- Desktop CTA -->
       <div class="hidden sm:block">
         <a :href="siteConfig.hero.cta.href">
           <Button size="sm" class="rounded-full">
@@ -35,38 +43,39 @@ const open = ref(false)
         </a>
       </div>
 
-      <!-- Mobile menu button -->
-      <button
-        class="rounded-md p-2 text-muted-foreground transition-transform duration-300 ease-spring hover:bg-accent sm:hidden"
-        :class="{ 'rotate-90': open }" @click="open = !open" aria-label="切换菜单">
-        <Menu v-if="!open" class="size-5" />
-        <X v-else class="size-5" />
-      </button>
+      <!-- Mobile: Sheet drawer -->
+      <Sheet v-model:open="open">
+        <SheetTrigger as-child class="sm:hidden">
+          <button
+            class="rounded-md p-2 text-muted-foreground transition-transform duration-300 ease-spring hover:bg-accent"
+            :class="{ 'rotate-90': open }" aria-label="切换菜单">
+            <Menu class="size-5" />
+          </button>
+        </SheetTrigger>
+        <SheetContent side="right" class="w-64 sm:hidden">
+          <SheetHeader class="text-left">
+            <SheetTitle class="flex items-center gap-2">
+              <img :src="siteConfig.bot.avatar" class="size-6" :alt="siteConfig.bot.name" />
+              {{ siteConfig.bot.name }}
+            </SheetTitle>
+          </SheetHeader>
+          <nav class="flex flex-col gap-3 mt-6 p-4">
+            <a v-for="(item, i) in siteConfig.nav" :key="item.label" :href="item.href"
+              :style="{ animationDelay: `${i * 80}ms` }"
+              class="animate-slide-down text-sm text-muted-foreground transition-all duration-300 ease-spring hover:translate-x-1 hover:text-foreground"
+              @click="open = false">
+              {{ item.label }}
+            </a>
+            <a :href="siteConfig.hero.cta.href" class="animate-slide-down mt-2"
+              :style="{ animationDelay: `${siteConfig.nav.length * 80}ms` }" @click="open = false">
+              <Button size="sm" class="w-full rounded-full">
+                <Bot class="size-4" />
+                {{ siteConfig.hero.cta.label }}
+              </Button>
+            </a>
+          </nav>
+        </SheetContent>
+      </Sheet>
     </div>
-
-    <!-- Mobile menu -->
-    <Transition enter-active-class="transition-[max-height,opacity] duration-500 ease-out-expo"
-      enter-from-class="max-h-0 opacity-0" enter-to-class="max-h-80 opacity-100"
-      leave-active-class="transition-[max-height,opacity] duration-300 ease-in" leave-from-class="max-h-80 opacity-100"
-      leave-to-class="max-h-0 opacity-0">
-      <div v-if="open" class="overflow-hidden border-t border-border bg-background sm:hidden">
-        <nav class="flex flex-col gap-2 px-4 py-4">
-          <a v-for="(item, i) in siteConfig.nav" :key="item.label" :href="item.href"
-            :style="{ transitionDelay: `${i * 60}ms`, animationDelay: `${i * 60}ms` }"
-            class="animate-slide-down text-sm text-muted-foreground transition-all duration-300 ease-spring hover:translate-x-1 hover:text-foreground"
-            @click="open = false">
-            {{ item.label }}
-          </a>
-          <a :href="siteConfig.hero.cta.href"
-            :style="{ transitionDelay: `${siteConfig.nav.length * 60}ms`, animationDelay: `${siteConfig.nav.length * 60}ms` }"
-            class="animate-slide-down" @click="open = false">
-            <Button size="sm" class="mt-1 w-full rounded-full">
-              <Bot class="size-4" />
-              {{ siteConfig.hero.cta.label }}
-            </Button>
-          </a>
-        </nav>
-      </div>
-    </Transition>
   </header>
 </template>

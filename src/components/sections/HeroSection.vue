@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { siteConfig } from "@/config/site"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { Bot, ChevronRight, ArrowDown } from "@lucide/vue"
 import { onMounted, ref } from "vue"
 
@@ -23,15 +24,16 @@ onMounted(() => { visible.value = true })
 
     <!-- Badges -->
     <div class="mb-6 flex flex-wrap items-center justify-center gap-2">
-      <span
+      <Badge
         v-for="(badge, i) in siteConfig.hero.badges"
         :key="badge"
+        variant="secondary"
         :class="visible && 'animate-fade-up'"
         :style="{ animationDelay: `${100 + i * 80}ms` }"
-        class="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground transition-all duration-300 ease-spring hover:scale-110 hover:border-primary/30 hover:text-foreground"
+        class="transition-all duration-300 ease-spring hover:scale-110 hover:border-primary/30"
       >
         {{ badge }}
-      </span>
+      </Badge>
     </div>
 
     <!-- Title -->
