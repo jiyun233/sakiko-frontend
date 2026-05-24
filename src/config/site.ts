@@ -60,7 +60,7 @@ export const siteConfig: SiteConfig = {
   },
 
   nav: [
-    { label: "开始使用", href: "#features" },
+    { label: "开始使用", href: "/" },
     { label: "隐私条款", href: "/terms" },
     { label: "功能投票", href: "/vote" }
   ],
