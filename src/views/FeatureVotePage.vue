@@ -263,15 +263,15 @@ loadFeatures()
             <div class="mt-6 flex flex-1 flex-col gap-5 p-4">
               <!-- Title -->
               <div class="flex flex-col gap-2">
-                <label class="text-sm font-medium">功能标题</label>
-                <input v-model="formTitle" type="text" placeholder="用一句话描述功能..."
+                <label class="text-sm font-medium">功能名称</label>
+                <input v-model="formTitle" type="text" placeholder="期望的触发命令"
                   class="rounded-lg border border-border bg-background px-3 py-2.5 text-sm outline-none transition-shadow duration-300 focus:ring-2 focus:ring-primary/20" />
               </div>
 
               <!-- Description -->
               <div class="flex flex-col gap-2">
                 <label class="text-sm font-medium">详细描述</label>
-                <textarea v-model="formDescription" rows="4" placeholder="请详细描述这个功能的需求和场景..."
+                <textarea v-model="formDescription" rows="4" placeholder="请详细描述这个功能的需求，以及调用方式..."
                   class="resize-none rounded-lg border border-border bg-background px-3 py-2.5 text-sm outline-none transition-shadow duration-300 focus:ring-2 focus:ring-primary/20" />
               </div>
 
@@ -325,10 +325,8 @@ loadFeatures()
       </div>
 
       <!-- Vote error toast -->
-      <div
-        v-if="voteError"
-        class="mb-4 rounded-lg border border-red-500/20 bg-red-50 px-4 py-3 text-sm text-red-700 dark:bg-red-950/20 dark:text-red-400 animate-fade-in"
-      >
+      <div v-if="voteError"
+        class="mb-4 rounded-lg border border-red-500/20 bg-red-50 px-4 py-3 text-sm text-red-700 dark:bg-red-950/20 dark:text-red-400 animate-fade-in">
         {{ voteError }}
       </div>
 
@@ -336,8 +334,8 @@ loadFeatures()
       <div class="mb-6 flex gap-2 overflow-x-auto pb-1">
         <button v-for="tab in FILTER_TABS" :key="tab.key"
           class="shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ease-spring" :class="activeFilter === tab.key
-              ? 'bg-primary text-primary-foreground shadow-md'
-              : 'bg-muted text-muted-foreground hover:bg-muted/80'
+            ? 'bg-primary text-primary-foreground shadow-md'
+            : 'bg-muted text-muted-foreground hover:bg-muted/80'
             " @click="activeFilter = tab.key">
           {{ tab.label }}
         </button>
@@ -400,8 +398,8 @@ loadFeatures()
             <button
               class="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-all duration-300 ease-spring"
               :class="feature.hasVoted
-                  ? 'bg-primary/10 text-primary cursor-default'
-                  : 'bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary hover:scale-105'
+                ? 'bg-primary/10 text-primary cursor-default'
+                : 'bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary hover:scale-105'
                 " :disabled="feature.hasVoted || voting[feature.id]" @click="handleVote(feature)">
               <Loader2 v-if="voting[feature.id]" class="size-4 animate-spin" />
               <ThumbsUp v-else class="size-4" />
