@@ -67,7 +67,7 @@ export const siteConfig: SiteConfig = {
 
   hero: {
     badges: ["快速绑定", "方便快捷", "信息查询", "高度可定制"],
-    cta: { label: "邀请机器人", href: "#" },
+    cta: { label: "邀请机器人", href: "/dev" },
     secondaryCta: { label: "查看文档", href: "#" },
   },
 
